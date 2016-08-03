@@ -28,5 +28,4 @@ WORKDIR /data
 
 ENV LANG C.UTF-8
 
-ENTRYPOINT ["make"]
-CMD ["package-sbt"]
+CMD ["make", "package-sbt"]

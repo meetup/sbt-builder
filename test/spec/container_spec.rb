@@ -5,11 +5,12 @@ DOCKER_VERSION = '1.10.1'
 
 describe 'sbt-builder image' do
   before(:all) do
-    image = Docker::Image.get(ENV['IMAGE_TAG'])
-
     set :os, family: :debian
     set :backend, :docker
-    set :docker_image, image.id
+
+    set :docker_image, ENV['IMAGE_TAG']
+    # Have to override the Cmd for some reason....
+    set :docker_container_create_options, {'Cmd' => ['/bin/sh']}
   end
 
   it 'has java 8 installed' do
@@ -22,5 +23,9 @@ describe 'sbt-builder image' do
 
   it 'has docker installed' do
     expect(command('docker --version').stdout).to match /^Docker version #{DOCKER_VERSION}/
+  end
+
+  it 'has make installed' do
+    expect(command('make --version').stdout).to match /^GNU Make/
   end
 end
