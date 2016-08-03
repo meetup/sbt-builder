@@ -2,6 +2,7 @@ PROJECT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 CI_BUILD_NUMBER ?= $(USER)-snapshot
 
 PUBLISH_TAG=mup.cr/blt/sbt-builder:0.1.$(CI_BUILD_NUMBER)
+TESTER_TAG=mup.cr/blt/sbt-builder-rspec:0.1.$(CI_BUILD_NUMBER)
 
 # lists all available targets
 list:
@@ -21,7 +22,12 @@ package:
 	docker build -t $(PUBLISH_TAG) .
 
 package-test:
-	@echo "No package tests yet for $(PUBLISH_TAG)"
+	docker build -f test/docker/Dockerfile \
+	  -t $(TESTER_TAG) test
+	docker run -it --rm \
+		-v /var/run/docker.sock:/var/run/docker.sock \
+		-e IMAGE_TAG=$(PUBLISH_TAG) \
+		$(TESTER_TAG)
 
 #Pushes the container to the docker registry/repository.
 publish:
