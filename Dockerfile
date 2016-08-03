@@ -1,4 +1,9 @@
-FROM java:8u92-jre-alpine
+FROM java:8u91-jre
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        make \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Docker
 ENV DOCKER_BUCKET get.docker.com
