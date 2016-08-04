@@ -1,4 +1,4 @@
-FROM java:8u91-jre
+FROM java:8u91-jdk
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         make \

@@ -17,6 +17,10 @@ describe 'sbt-builder image' do
     expect(command('java -version').stderr).to match /1.8/
   end
 
+  it 'has javac 8 installed' do
+    expect(command('javac -version').stderr).to match /javac 1.8/
+  end
+
   it 'has git installed' do
     expect(command('git --version').stdout).to match /^git version/
   end
