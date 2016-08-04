@@ -30,7 +30,7 @@ package-test:
 		$(TESTER_TAG)
 
 #Pushes the container to the docker registry/repository.
-publish:
+publish: package package-test
 	@docker push $(PUBLISH_TAG)
 
 publish-tag:
