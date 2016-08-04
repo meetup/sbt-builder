@@ -21,7 +21,7 @@ no_op__:
 package:
 	docker build -t $(PUBLISH_TAG) .
 
-package-test:
+component-test:
 	docker build -f test/docker/Dockerfile \
 	  -t $(TESTER_TAG) test
 	docker run -it --rm \
@@ -30,7 +30,7 @@ package-test:
 		$(TESTER_TAG)
 
 #Pushes the container to the docker registry/repository.
-publish: package package-test
+publish: package component-test
 	@docker push $(PUBLISH_TAG)
 
 publish-tag:
