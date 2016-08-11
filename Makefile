@@ -35,5 +35,8 @@ component-test:
 publish: package component-test
 	@docker push $(PUBLISH_TAG)
 
+version:
+	@echo $(VERSION)
+
 publish-tag:
 	@echo $(PUBLISH_TAG)
