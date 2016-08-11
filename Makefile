@@ -1,8 +1,10 @@
 PROJECT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 CI_BUILD_NUMBER ?= $(USER)-snapshot
 
-PUBLISH_TAG=mup.cr/blt/sbt-builder:0.1.$(CI_BUILD_NUMBER)
-TESTER_TAG=mup.cr/blt/sbt-builder-rspec:0.1.$(CI_BUILD_NUMBER)
+VERSION ?= 0.1.$(CI_BUILD_NUMBER)
+
+PUBLISH_TAG=meetup/sbt-builder:$(VERSION)
+TESTER_TAG=mup.cr/blt/sbt-builder-rspec:$(VERSION)
 
 # lists all available targets
 list:
