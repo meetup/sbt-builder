@@ -17,7 +17,7 @@ before_install:
   - sudo pip install envtpl
 
   # Login to hub.docker.com
-  - docker login --email not@val.id --username $DOCKER_USER --password $DOCKER_PASS
+  - docker login --username $DOCKER_USER --password $DOCKER_PASS
 
 script:
   # Change this later.
