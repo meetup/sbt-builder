@@ -1,4 +1,4 @@
-FROM openjdk:8u111-jdk
+FROM openjdk:8u181-jdk
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         make \
@@ -15,7 +15,7 @@ RUN curl -fSL "https://${DOCKER_BUCKET}/builds/Linux/x86_64/docker-$DOCKER_VERSI
     && echo "${DOCKER_SHA256}  /usr/local/bin/docker" | sha256sum -c - \
     && chmod +x /usr/local/bin/docker
 
-ENV SBT_VERSION 0.13.12
+ENV SBT_VERSION 0.13.17
 
 # Install SBT
 RUN cd /usr/local && \
