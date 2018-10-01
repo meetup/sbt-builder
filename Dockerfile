@@ -19,7 +19,7 @@ ENV SBT_VERSION 0.13.17
 
 # Install SBT
 RUN cd /usr/local && \
-    wget https://dl.bintray.com/sbt/native-packages/sbt/${SBT_VERSION}/sbt-${SBT_VERSION}.tgz && \
+    wget https://piccolo.link/sbt-${SBT_VERSION}.tgz && \
     tar -xf sbt-${SBT_VERSION}.tgz && \
     rm sbt-${SBT_VERSION}.tgz && \
     ln -s /usr/local/sbt/bin/sbt /usr/bin/sbt
