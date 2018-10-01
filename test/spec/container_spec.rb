@@ -1,7 +1,7 @@
 require "serverspec"
 require "docker"
 
-DOCKER_VERSION = '1.10.1'
+DOCKER_VERSION = '1.13.1'
 
 describe 'sbt-builder image' do
   before(:all) do
