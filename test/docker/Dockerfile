@@ -1,6 +1,6 @@
-FROM ruby:2.2
+FROM ruby:2
 
-ENV DOCKER_VERSION 1.10.1-0~jessie
+ENV DOCKER_VERSION 1.13.1-0~debian-jessie
 
 RUN apt-get update && \
     apt-get install -y make apt-transport-https ca-certificates && \

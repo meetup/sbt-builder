@@ -1,4 +1,4 @@
-FROM openjdk:8u111-jdk
+FROM openjdk:8u181-jdk
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         make \
@@ -7,19 +7,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install Docker
 ENV DOCKER_BUCKET get.docker.com
+ENV DOCKER_VERSION 1.13.1
+ENV DOCKER_SHA256 97892375e756fd29a304bd8cd9ffb256c2e7c8fd759e12a55a6336e15100ad75
 
-ENV DOCKER_VERSION 1.10.1
-ENV DOCKER_SHA256 de4057057acd259ec38b5244a40d806993e2ca219e9869ace133fad0e09cedf2
-
-RUN curl -fSL "https://${DOCKER_BUCKET}/builds/Linux/x86_64/docker-$DOCKER_VERSION" -o /usr/local/bin/docker \
-    && echo "${DOCKER_SHA256}  /usr/local/bin/docker" | sha256sum -c - \
-    && chmod +x /usr/local/bin/docker
-
-ENV SBT_VERSION 0.13.12
+RUN set -x \
+    && wget -O docker.tgz "https://${DOCKER_BUCKET}/builds/Linux/x86_64/docker-${DOCKER_VERSION}.tgz" \
+    && echo "${DOCKER_SHA256} *docker.tgz" | sha256sum -c - \
+    && tar -xzvf docker.tgz \
+    && mv docker/* /usr/local/bin/ \
+    && rmdir docker \
+    && rm docker.tgz \
+    && docker -v
 
 # Install SBT
+ENV SBT_VERSION 0.13.17
+
 RUN cd /usr/local && \
-    wget https://dl.bintray.com/sbt/native-packages/sbt/${SBT_VERSION}/sbt-${SBT_VERSION}.tgz && \
+    wget https://piccolo.link/sbt-${SBT_VERSION}.tgz && \
     tar -xf sbt-${SBT_VERSION}.tgz && \
     rm sbt-${SBT_VERSION}.tgz && \
     ln -s /usr/local/sbt/bin/sbt /usr/bin/sbt
