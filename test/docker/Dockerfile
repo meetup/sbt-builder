@@ -15,7 +15,7 @@ ADD docker/Gemfile.lock /usr/src/app/
 
 WORKDIR /usr/src/app/
 
-RUN gem install bundler && bundle
+RUN gem install bundler && bundle > /dev/null
 
 ADD . /usr/src/app/
 
