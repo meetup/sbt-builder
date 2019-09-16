@@ -22,6 +22,7 @@ before_install:
 script:
   # Change this later.
   - make publish
+  - make publish-github-registry
 
 after_success:
   - git config --global user.email "builds@travis-ci.com"
