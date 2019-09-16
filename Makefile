@@ -4,7 +4,8 @@ CI_BUILD_NUMBER ?= $(USER)-snapshot
 VERSION ?= 0.1.$(CI_BUILD_NUMBER)
 
 PUBLISH_TAG=meetup/sbt-builder:$(VERSION)
-GITHUB_REGISTRY_TAG=docker.pkg.github.com/meetup/sbt-builder:$(VERSION)
+# docker image push is only supported with a tag of the format :owner/:repo_name/:image_name.
+GITHUB_REGISTRY_TAG=docker.pkg.github.com/meetup/sbt-builder/sbt-builder:$(VERSION)
 TESTER_TAG=mup.cr/blt/sbt-builder-rspec:$(VERSION)
 
 # lists all available targets
