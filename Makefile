@@ -4,6 +4,7 @@ CI_BUILD_NUMBER ?= $(USER)-snapshot
 VERSION ?= 0.1.$(CI_BUILD_NUMBER)
 
 PUBLISH_TAG=meetup/sbt-builder:$(VERSION)
+GITHUB_REGISTRY_TAG=docker.pkg.github.com/meetup/sbt-builder:$(VERSION)
 TESTER_TAG=mup.cr/blt/sbt-builder-rspec:$(VERSION)
 
 # lists all available targets
@@ -34,6 +35,11 @@ component-test:
 #Pushes the container to the docker registry/repository.
 publish: package component-test
 	@docker push $(PUBLISH_TAG)
+
+publish-github-registry: package component-test
+	@docker login docker.pkg.github.com --username chenrui333 -p GITHUB_REGISTRY_TOKEN
+	@docker tag $(PUBLISH_TAG) $(GITHUB_REGISTRY_TAG)
+	@docker push $(GITHUB_REGISTRY_TAG)
 
 version:
 	@echo $(VERSION)
