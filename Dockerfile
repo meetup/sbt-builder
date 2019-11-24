@@ -1,4 +1,4 @@
-FROM openjdk:8u181-jdk
+FROM amazoncorretto:8u232
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         make \
