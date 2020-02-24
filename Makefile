@@ -29,7 +29,6 @@ component-test:
 	docker build -f test/docker/Dockerfile \
 	  -t $(TESTER_TAG) test
 	docker run -it --rm \
-		-v /var/run/docker.sock:/var/run/docker.sock \
 		-e IMAGE_TAG=$(PUBLISH_TAG) \
 		$(TESTER_TAG)
 
