@@ -22,7 +22,7 @@ list:
 no_op__:
 
 #Assemles the software artifact using the defined build image.
-package:
+build:
 	docker build -t $(PUBLISH_TAG) .
 
 component-test:
@@ -34,10 +34,10 @@ component-test:
 		$(TESTER_TAG)
 
 #Pushes the container to the docker registry/repository.
-publish: package component-test
+publish: build component-test
 	@docker push $(PUBLISH_TAG)
 
-publish-github-registry: package component-test
+publish-github-registry: build component-test
 	@docker login docker.pkg.github.com -u $(GITHUB_REGISTRY_USERNAME) -p $(GITHUB_REGISTRY_TOKEN)
 	@docker tag $(PUBLISH_TAG) $(GITHUB_REGISTRY_TAG)
 	@docker push $(GITHUB_REGISTRY_TAG)
