@@ -1,0 +1,29 @@
+name: docker
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build docker image
+        run: make build
+      - name: Deploy the Docker image
+        run: make publish
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          CI_BUILD_NUMBER: ${{ github.run_number }}
+      - name: Publish to github docker registry
+        run: make publish-gh
+        env:
+          GH_REGISTRY_USERNAME: ${{ secrets.GITHUB_REGISTRY_USERNAME }}
+          GH_REGISTRY_PASSWORD: ${{ secrets.GITHUB_REGISTRY_TOKEN }}
+          CI_BUILD_NUMBER: ${{ github.run_number }}

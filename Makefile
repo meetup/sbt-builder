@@ -1,7 +1,7 @@
 PROJECT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 CI_BUILD_NUMBER ?= $(USER)-snapshot
 
-VERSION ?= 0.1.$(CI_BUILD_NUMBER)
+VERSION ?= 0.2.$(CI_BUILD_NUMBER)
 
 PUBLISH_TAG=meetup/sbt-builder:$(VERSION)
 # docker image push is only supported with a tag of the format :owner/:repo_name/:image_name.
@@ -22,23 +22,22 @@ list:
 no_op__:
 
 #Assemles the software artifact using the defined build image.
-package:
+build:
 	docker build -t $(PUBLISH_TAG) .
 
 component-test:
 	docker build -f test/docker/Dockerfile \
 	  -t $(TESTER_TAG) test
 	docker run -it --rm \
-		-v /var/run/docker.sock:/var/run/docker.sock \
 		-e IMAGE_TAG=$(PUBLISH_TAG) \
 		$(TESTER_TAG)
 
 #Pushes the container to the docker registry/repository.
-publish: package component-test
+publish: build component-test
 	@docker push $(PUBLISH_TAG)
 
-publish-github-registry: package component-test
-	@docker login docker.pkg.github.com --username $(GITHUB_REGISTRY_USERNAME) -p $(GITHUB_REGISTRY_TOKEN)
+publish-github-registry: build component-test
+	@docker login docker.pkg.github.com -u $(GITHUB_REGISTRY_USERNAME) -p $(GITHUB_REGISTRY_TOKEN)
 	@docker tag $(PUBLISH_TAG) $(GITHUB_REGISTRY_TAG)
 	@docker push $(GITHUB_REGISTRY_TAG)
 
