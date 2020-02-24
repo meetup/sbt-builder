@@ -6,5 +6,5 @@ update_configs:
     update_schedule: "daily"
   # Keep Gemfile (& lockfiles) up to date
   - package_manager: "ruby:bundler"
-    directory: "/"
+    directory: "/test/docker"
     update_schedule: "daily"
