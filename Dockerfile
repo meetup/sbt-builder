@@ -1,4 +1,4 @@
-FROM openjdk:8u181-jdk
+FROM openjdk:8u282-jdk
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         make \
@@ -20,10 +20,10 @@ RUN set -x \
     && docker -v
 
 # Install SBT
-ENV SBT_VERSION 0.13.17
+ENV SBT_VERSION 1.4.7
 
 RUN cd /usr/local && \
-    wget https://piccolo.link/sbt-${SBT_VERSION}.tgz && \
+    wget https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz && \
     tar -xf sbt-${SBT_VERSION}.tgz && \
     rm sbt-${SBT_VERSION}.tgz && \
     ln -s /usr/local/sbt/bin/sbt /usr/bin/sbt
