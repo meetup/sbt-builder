@@ -2,8 +2,7 @@ VERSION ?= 0.2.$(CI_BUILD_NUMBER)
 
 PUBLISH_TAG=sbt-builder:$(VERSION)
 # docker image push is only supported with a tag of the format :owner/:repo_name/:image_name.
-GITHUB_REGISTRY_TAG=docker.pkg.github.com/meetup/sbt-builder/sbt-builder:$(VERSION)
-TESTER_TAG=mup.cr/blt/sbt-builder-rspec:$(VERSION)
+GITHUB_REGISTRY_TAG=ghcr.io/meetup/sbt-builder:$(VERSION)
 
 _authenticate:
 	docker login ghcr.io -u meetcvs -p $(GITHUB_TOKEN)
