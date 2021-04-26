@@ -1,4 +1,4 @@
-VERSION ?= 0.2.$(CI_BUILD_NUMBER)
+VERSION ?= 0.3.$(CI_BUILD_NUMBER)
 
 PUBLISH_TAG=sbt-builder:$(VERSION)
 # docker image push is only supported with a tag of the format :owner/:repo_name/:image_name.
