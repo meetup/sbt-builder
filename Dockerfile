@@ -20,7 +20,7 @@ RUN set -x \
     && docker -v
 
 # Install SBT
-ENV SBT_VERSION 1.4.7
+ENV SBT_VERSION 1.5.1
 
 RUN cd /usr/local && \
     wget https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz && \
