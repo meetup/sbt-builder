@@ -1,4 +1,4 @@
-FROM openjdk:8u282-jdk
+FROM ghcr.io/meetup/openjdk:8u282-jdk
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         make \
@@ -20,7 +20,7 @@ RUN set -x \
     && docker -v
 
 # Install SBT
-ENV SBT_VERSION 1.4.7
+ENV SBT_VERSION 1.5.1
 
 RUN cd /usr/local && \
     wget https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz && \
