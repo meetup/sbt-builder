@@ -1,4 +1,4 @@
-FROM ruby:2
+FROM ghcr.io/meetup/ruby:2
 
 ENV DOCKER_VERSION 1.13.1-0~debian-jessie
 
