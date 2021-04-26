@@ -38,7 +38,7 @@ publish: package component-test
 	@docker push $(PUBLISH_TAG)
 
 publish-github-registry: package component-test
-	@docker login docker.pkg.github.com --username $(GITHUB_REGISTRY_USERNAME) -p $(GITHUB_REGISTRY_TOKEN)
+	echo $(GITHUB_TOKEN) | docker login ghcr.io -u meetcvs --password-stdin
 	@docker tag $(PUBLISH_TAG) $(GITHUB_REGISTRY_TAG)
 	@docker push $(GITHUB_REGISTRY_TAG)
 

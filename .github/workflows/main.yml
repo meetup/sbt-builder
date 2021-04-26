@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_PKG_RW_TOKEN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,9 +16,5 @@ jobs:
         with:
           # use Java 8
           java-version: adopt@1.8
-      - name: Compile
-        run: sbt compile
-        env:
-          # NB: I'd like not to put this here but the sbt gh package plugin
-          # will error out if its not resolved
-          GITHUB_TOKEN: ${{ secrets.GH_PACKAGES_GITHUB_TOKEN }}
+      - name: build and publish image
+        run: make publish-github-registry
