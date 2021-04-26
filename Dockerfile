@@ -1,4 +1,4 @@
-FROM openjdk:8u282-jdk
+FROM ghcr.io/meetup/openjdk:8u282-jdk
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         make \
