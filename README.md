@@ -1,6 +1,6 @@
 # blt-builder
 
-[![Build Status](https://travis-ci.org/meetup/sbt-builder.svg?branch=master)](https://travis-ci.org/meetup/sbt-builder)
+[![main](https://github.com/meetup/sbt-builder/actions/workflows/main.yml/badge.svg)](https://github.com/meetup/sbt-builder/actions/workflows/main.yml)
 [![](https://images.microbadger.com/badges/image/meetup/sbt-builder.svg)](https://microbadger.com/images/meetup/sbt-builder "Get your own image badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/meetup/sbt-builder.svg)](https://microbadger.com/images/meetup/sbt-builder "Get your own version badge on microbadger.com")
 
