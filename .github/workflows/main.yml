@@ -12,6 +12,7 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GH_PKG_RW_TOKEN }}
+  CI_BUILD_NUMBER: ${{github.run_number}}
 
 jobs:
   build:
