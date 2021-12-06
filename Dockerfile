@@ -17,7 +17,7 @@ RUN set -x \
 ENV SBT_VERSION 1.5.1
 
 RUN cd /usr/local && \
-    wget https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz && \
+    wget --quiet https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz && \
     tar -xf sbt-${SBT_VERSION}.tgz && \
     rm sbt-${SBT_VERSION}.tgz && \
     ln -s /usr/local/sbt/bin/sbt /usr/bin/sbt
