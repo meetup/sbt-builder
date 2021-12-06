@@ -37,7 +37,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GH_PKG_RW_TOKEN }}
 
-      - name: Build
+      - name: Build baseimage openjdk:8u312-jdk
         uses: docker/build-push-action@v2
         with:
           builder: ${{ steps.buildx.outputs.name }}
@@ -47,5 +47,16 @@ jobs:
           push: true
           tags: ghcr.io/meetup/openjdk:8u312-jdk
 
-      - name: build and publish image
-        run: make publish
+      - name: Build
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ghcr.io/meetup/sbt-builder:0.3.${{github.run_number}}
+
+
+#      - name: build and publish image
+#        run: make publish

@@ -11,7 +11,6 @@ package: _authenticate
 	docker buildx build --platform linux/amd64,linux/arm64/8 -t $(PUBLISH_TAG) .
 
 publish: package
-	@sleep 10
 	@docker images
 	@docker tag $(PUBLISH_TAG) $(GITHUB_REGISTRY_TAG)
 	@docker push $(GITHUB_REGISTRY_TAG)
