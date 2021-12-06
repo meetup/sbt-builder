@@ -8,7 +8,7 @@ _authenticate:
 	docker login ghcr.io -u meetcvs -p $(GITHUB_TOKEN)
 
 package: _authenticate
-	docker buildx build --platform linux/amd64,linux/arm64/8 build -t $(PUBLISH_TAG) .
+	docker buildx build --platform linux/amd64,linux/arm64/8 -t $(PUBLISH_TAG) .
 
 publish: package
 	@docker tag $(PUBLISH_TAG) $(GITHUB_REGISTRY_TAG)
