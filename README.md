@@ -1,4 +1,4 @@
-# blt-builder
+# sbt-builder
 
 [![main](https://github.com/meetup/sbt-builder/actions/workflows/main.yml/badge.svg)](https://github.com/meetup/sbt-builder/actions/workflows/main.yml)
 [![](https://images.microbadger.com/badges/image/meetup/sbt-builder.svg)](https://microbadger.com/images/meetup/sbt-builder "Get your own image badge on microbadger.com")
