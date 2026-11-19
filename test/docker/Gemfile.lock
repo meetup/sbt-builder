@@ -47,4 +47,4 @@ DEPENDENCIES
   serverspec (= 2.41.5)
 
 BUNDLED WITH
-   2.0.2
+  4.1.0
